@@ -8,16 +8,13 @@ using namespace std;
 string IOClass::getData(void) {
     string content;
     while (true) {
-        if (cin.fail()) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
         cout << "Enter input: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         getline(cin, content);
         if (!content.empty()) {
             break;
         }
-        cout << content;
         cout << "Input cannot be empty. Please try again.\n";
     }
     return content;

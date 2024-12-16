@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
-#include "StudentClass.h"
 #include <map>
 #include "DBClass.h"
+#include "EmployerClass.h"
 
 using namespace std;
 
@@ -14,28 +14,28 @@ DatabaseService::DatabaseService() {
 	string line;
 	while (getline(file, line))
 	{
-		Student student(line);
-		students[student.getId()] = student;
+		Employer employer(line);
+		employers[employer.getId()] = employer;
 	}
 }
 
-bool DatabaseService::update(Student student) {
-	students[student.getId()] = student;
+bool DatabaseService::update(Employer student) {
+	employers[student.getId()] = student;
 	return true;
 }
 
-std::map<__int64, Student> DatabaseService::getAllStudents() {
-	return students;
+std::map<__int64, Employer> DatabaseService::getAllEmployers() {
+	return employers;
 }
 
-Student DatabaseService::getById(__int64 id) {
-	return students[id];
+Employer DatabaseService::getById(__int64 id) {
+	return employers[id];
 }
 
 bool DatabaseService::remove(__int64 id) {
-	bool isThere = students.count(id);
+	bool isThere = employers.count(id);
 	if (isThere) {
-		students.erase(id);
+		employers.erase(id);
 	}
 	return isThere;
 }
@@ -43,7 +43,7 @@ bool DatabaseService::remove(__int64 id) {
 bool DatabaseService::commit() {
 	std::ofstream ofs(filename, std::ofstream::trunc);
 
-	for (auto& kv : students) {
+	for (auto& kv : employers) {
 		ofs << kv.second.toString(" ");
 	}
 

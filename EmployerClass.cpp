@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <vector>
-#include "StudentClass.h"
+#include "EmployerClass.h"
 
 using namespace std;
 
@@ -62,76 +62,86 @@ std::vector<std::string> split(const std::string& line) {
 	vector<string> splitted;
 
 	while (iteratorStart != line.cend()) {
-		splitted.emplace_back(iteratorStart, iteratorEnd - 1);
-		if (iteratorEnd == line.cend()) break;
-		iteratorStart = iteratorEnd + 1;
+		splitted.emplace_back(iteratorStart, iteratorEnd);
+		if (iteratorEnd == line.cend()) {
+			break;
+		}
+		iteratorStart = iteratorEnd + 1; 
 		iteratorEnd = std::find(iteratorStart, line.cend(), ' ');
 	}
 
 	return splitted;
 }
 
-Student::Student(__int64 id, std::string surname, std::string name, std::string secondName, std::string dateOfAdmission, __int16 specialtyCode) {
+Employer::Employer(__int64 IIAN, std::string surname, std::string name, std::string secondName, _int64 passport, std::string birthday, __int64 taxAmount) {
 	if (name.empty())
 	{
 		throw invalid_argument("surname must not be empty");
 	}
-	if (isDate(dateOfAdmission))
+	if (isDate(birthday))
 	{
-		throw invalid_argument("Date: " + dateOfAdmission + "does not match the format: DD.MM.YYYY");
+		throw invalid_argument("Date: " + birthday + "does not match the format: DD.MM.YYYY");
 	}
+	this->IIAN = IIAN;
 	this->surname = surname;
 	this->name = name;
 	this->secondName = secondName;
-	this->dateOfAdmission = dateOfAdmission;
-	this->studentId = id;
-	this->specialtyCode = specialtyCode;
+	this->birthday = birthday;
+	this->passport = passport;
+	this->taxAmount = taxAmount;
 }
 
-__int64 Student::getId() {
-	return this->studentId;
+__int64 Employer::getId() {
+	return this->passport;
 }
 	
 
-string Student::toString() {
+string Employer::toString() {
 	string ln =
 	#ifdef _WIN32
 		"\r\n";
 	#else
 		"\n";
 	#endif
-	return this->surname + ln
+	return to_string(this->IIAN) + ln
+		+ this->surname + ln
 		+ this->name + ln
 		+ this->secondName + ln
-		+ this->dateOfAdmission + ln
-		+ to_string(this->studentId) + ln
-		+ to_string(this->specialtyCode) + ln;
+		+ to_string(this->passport) + ln
+		+ birthday + ln
+		+ to_string(this->taxAmount) + ln;
 }
 
-string Student::toString(string separator) {
-	return this->surname + separator
+string Employer::toString(string separator) {
+	return to_string(this->IIAN) + separator
+		+ this->surname + separator
 		+ this->name + separator
 		+ this->secondName + separator
-		+ this->dateOfAdmission + separator
-		+ to_string(this->studentId) + separator
-		+ to_string(this->specialtyCode) + separator;
+		+ to_string(this->passport) + separator
+		+ birthday + separator
+		+ to_string(this->taxAmount) + separator;
 }
 
-Student::Student(string line) {
+Employer::Employer(string line) {
 	vector<string> values = split(line);
+
+	if (values.size() < 7) {
+		throw std::invalid_argument("input: " + line + "doesn't match the template: IIAN Surname Name SecondName Passport Birthday TaxAmount");
+	}
 
 	if (values[1].empty())
 	{
 		throw invalid_argument("surname must not be empty");
 	}
-	if (!isDate(values[3]))
+	if (!isDate(values[5]))
 	{
-		throw invalid_argument("Date: " + dateOfAdmission + "does not match the format: DD.MM.YYYY");
+		throw invalid_argument("Date: " + birthday + "does not match the format: DD.MM.YYYY");
 	}
-	this->surname = values[0];
-	this->name = values[1];
-	this->secondName = values[2];
-	this->dateOfAdmission = values[3];
-	this->studentId = _atoi64(values[4].c_str());
-	this->specialtyCode = _atoi64(values[5].c_str());
+	this->IIAN = atol(values[0].c_str());
+	this->surname = values[1];
+	this->name = values[2];
+	this->secondName = values[3];
+	this->passport = _atoi64(values[4].c_str());
+	this->birthday = values[5];
+	this->taxAmount = _atoi64(values[6].c_str());
 }

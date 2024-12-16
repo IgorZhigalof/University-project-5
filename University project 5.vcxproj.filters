@@ -21,7 +21,7 @@
     <ClCompile Include="DBClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StudentClass.cpp">
+    <ClCompile Include="EmployerClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UpdateAction.cpp">
@@ -36,6 +36,12 @@
     <ClCompile Include="ReadAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CommitAction.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CommitAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IOClass.h">
@@ -47,7 +53,7 @@
     <ClInclude Include="DBClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StudentClass.h">
+    <ClInclude Include="EmployerClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ReadAction.h">

@@ -8,14 +8,14 @@ ReadAction::ReadAction(DatabaseService* db, IOClass* inOut) {
 }
 
 void ReadAction::getInfo() const {
-	inOut->println("Read all students");
+	inOut->println("Read all employers");
 }
 
 void ReadAction::getHelp() const {
 }
 
 void ReadAction::run() const {
-	auto students = db->getAllStudents();
+	auto students = db->getAllEmployers();
 	for (auto& kv : students) {
 		inOut->println(kv.second.toString(" "));
 	}

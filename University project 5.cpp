@@ -4,6 +4,8 @@
 #include "UpdateAction.h"
 #include "ReadAction.h"
 #include "RemoveAction.h"
+#include "CommitAction.h"
+#include <vector>
 
 int main() {
     DatabaseService db;
@@ -14,6 +16,7 @@ int main() {
     actions.push_back(std::make_unique<ReadAction>(&db, &io));
     actions.push_back(std::make_unique<UpdateAction>(&db, &io));
     actions.push_back(std::make_unique<RemoveAction>(&db, &io));
+    actions.push_back(std::make_unique<CommitAction>(&db, &io));
 
     while (true)
     {

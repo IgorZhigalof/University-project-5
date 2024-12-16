@@ -13,6 +13,7 @@ public:
     void getInfo() const override;
     void getHelp() const override;
     void run() const override;
+
 private:
     DatabaseService* db;
     IOClass* inOut;

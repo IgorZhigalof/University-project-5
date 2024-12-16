@@ -1,6 +1,7 @@
 #include "DBClass.h"
 #include "IOClass.h"
 #include "UpdateAction.h"
+#include "EmployerClass.h"
 
 using namespace std;
 
@@ -14,22 +15,16 @@ void UpdateAction::getInfo() const {
 }
 
 void UpdateAction::getHelp() const {
-	string ln =
-	#ifdef _WIN32
-		"\r\n";
-	#else
-		"\n";
-	#endif
-	inOut->print("Template: surname name secondName dateOfAdmission studentId specialtyCode" + ln
-		+ "Use \"-\" to skip information");
+	inOut->println("Template: IIAN Surname Name SecondName Passport Birthday TaxAmount");
+	inOut->println("Use \"-\" to skip information");
 }
 
 void UpdateAction::run() const {
-	Student* student;
+	Employer* employer;
 	while(true) {
 		try
 		{
-			student = new Student(inOut->getData());
+			employer = new Employer(inOut->getData());
 		}
 		catch (const std::exception &ex)
 		{
@@ -40,6 +35,6 @@ void UpdateAction::run() const {
 		}
 		break;
 	}
-	inOut->println("Succesfully added");
-	db->update(*student);
+	inOut->println("Successfully added");
+	db->update(*employer);
 }
