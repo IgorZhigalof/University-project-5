@@ -15,8 +15,8 @@ void UpdateAction::getInfo() const {
 }
 
 void UpdateAction::getHelp() const {
+	inOut->println("Enter \"-\" to go back");
 	inOut->println("Template: IIAN Surname Name SecondName Passport Birthday TaxAmount");
-	inOut->println("Use \"-\" to skip information");
 }
 
 void UpdateAction::run() const {

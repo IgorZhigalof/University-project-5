@@ -21,8 +21,8 @@ void RemoveAction::getHelp() const {
 	#else
 		"\n";
 	#endif
-	inOut->println("Enter student id to delete" + ln
-		+ "Enter \"-\" to close delete action");
+	inOut->println("Enter employer passport to delete" + ln
+		+ "Enter \"-\" to go back");
 }
 
 void RemoveAction::run() const {
@@ -35,6 +35,7 @@ void RemoveAction::run() const {
 		{
 			__int64 id = atol(data.c_str());
 			db->remove(id);
+			break;
 		}
 		catch (const std::exception& ex)
 		{
@@ -44,6 +45,6 @@ void RemoveAction::run() const {
 			continue;
 		}
 	}
-	inOut->println("Succesfully removed");
+	inOut->println("Successfully removed");
 }
 	

@@ -26,12 +26,19 @@ int main() {
             std::cout << counter << ". ";
             action->getInfo();
         }
+        counter++;
+        std::cout << counter << ". Exit" << endl;
+        std::cout << "Enter the number of the desired category: ";
         int value;
         cin >> value;
+
+        if (value == counter) {
+            break;
+        }
+
         actions[value - 1]->getHelp();
         actions[value - 1]->run();
     }
     
-
     return 0;
 }

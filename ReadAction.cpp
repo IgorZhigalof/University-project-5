@@ -12,11 +12,15 @@ void ReadAction::getInfo() const {
 }
 
 void ReadAction::getHelp() const {
+	inOut->println("Employer list:");
 }
 
 void ReadAction::run() const {
-	auto students = db->getAllEmployers();
-	for (auto& kv : students) {
+	auto elements = db->getAllElements();
+	if (elements.size() == 0) {
+		inOut->println("There's no employers yet");
+	}
+	for (auto& kv : elements) {
 		inOut->println(kv.second.toString(" "));
 	}
 }

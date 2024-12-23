@@ -12,7 +12,7 @@ private:
 public:
     DatabaseService();
     bool update(Employer student);
-    std::map<__int64, Employer> getAllEmployers();
+    std::map<__int64, Employer> getAllElements();
     Employer getById(__int64 id);
     bool remove(__int64 id);
     bool commit();

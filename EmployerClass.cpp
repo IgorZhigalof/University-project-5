@@ -49,10 +49,6 @@ bool isDate(std::string str1) {
 	return result;
 }
 
-
-
-
-
 std::vector<std::string> split(const std::string& line) {
 	using std::string;
 	using std::vector;
@@ -94,7 +90,6 @@ Employer::Employer(__int64 IIAN, std::string surname, std::string name, std::str
 __int64 Employer::getId() {
 	return this->passport;
 }
-	
 
 string Employer::toString() {
 	string ln =
@@ -131,7 +126,7 @@ Employer::Employer(string line) {
 
 	if (values[1].empty())
 	{
-		throw invalid_argument("surname must not be empty");
+		throw invalid_argument("Surname must not be empty");
 	}
 	if (!isDate(values[5]))
 	{

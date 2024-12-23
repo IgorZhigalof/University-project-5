@@ -24,7 +24,7 @@ bool DatabaseService::update(Employer student) {
 	return true;
 }
 
-std::map<__int64, Employer> DatabaseService::getAllEmployers() {
+std::map<__int64, Employer> DatabaseService::getAllElements() {
 	return employers;
 }
 
@@ -44,7 +44,7 @@ bool DatabaseService::commit() {
 	std::ofstream ofs(filename, std::ofstream::trunc);
 
 	for (auto& kv : employers) {
-		ofs << kv.second.toString(" ");
+		ofs << kv.second.toString(" ") << endl;
 	}
 
 	ofs.close();
